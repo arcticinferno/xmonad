@@ -1,0 +1,17 @@
+
+Config { font = "xft:Monospace:size=12:bold:antialias=true"
+       , bgColor = "#2E3440"
+       , fgColor = "#ECEFF4"
+       , position = TopSize L 100 40
+       , lowerOnStart = True
+       , commands = [ Run Network "enp3s0" ["-L","0","-H","32","--normal","#88C0D0","--high","#B4A1A0"] 10
+                    , Run Cpu ["-L","3","-H","50","--normal","#88C0D0","--high","#B4A1A0"] 10
+                    , Run Memory ["-t","Mem: <usedratio>%"] 10
+                    , Run Swap [] 10
+                    , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+                    , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = " %StdinReader% }{ %cpu% | %memory% * %swap% | %enp3s0% | %date% "
+       }
