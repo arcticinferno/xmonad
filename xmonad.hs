@@ -16,6 +16,8 @@ import XMonad.Util.Run (spawnPipe)
 import XMonad.Util.Ungrab ()
 
 import XMonad.Layout.NoBorders (smartBorders)
+import XMonad.Layout.Simplest
+import XMonad.Layout.SubLayouts
 
 -- Layout
 import XMonad.Layout.Spacing
@@ -27,6 +29,8 @@ type Keybind = (String, X ())
 
 (<:>) :: String -> String -> Keybind
 (<:>) x y = (x, spawn y)
+
+implSpace i = spacingRaw False (Border i i i i) True (Border i i i i) True
 
 xMod :: KeyMask
 xMod = mod1Mask -- Alt
@@ -63,8 +67,7 @@ xEditFile = "M-f" <:> "~/.local/bin/fx"
 xLayout =
   avoidStruts $
   smartBorders $
-  spacingRaw True (Border 10 10 10 10) True (Border 10 10 10 10) True $
-  layoutHook def
+  subLayout [] (smartBorders Simplest) $ implSpace 10 $ layoutHook def
 
 main = do
   xmproc0 <- spawnPipe "xmobar -x 0 ~/.xmobarrc -d"
