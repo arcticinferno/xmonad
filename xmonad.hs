@@ -32,10 +32,13 @@ xMod :: KeyMask
 xMod = mod1Mask -- Alt
 
 xBrowser :: Keybind
-xBrowser = "M-u" <:> "firefox-bin"
+xBrowser = "M-u" <:> "alacritty -e w3m -no-cookie https://duckduckgo.com/"
 
 xScreenshot :: Keybind
 xScreenshot = "M-h" <:> "flameshot gui"
+
+xYT :: Keybind
+xYT = "M-S-h" <:> "~/.local/bin/youtube-scrape"
 
 xTerminal :: Keybind
 xTerminal = "M-S-<Return>" <:> "alacritty"
@@ -111,4 +114,5 @@ main = do
     , xScreenshot
     , xEditFile
     , switchLang
+    , xYT
     ]
