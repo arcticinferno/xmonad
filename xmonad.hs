@@ -8,11 +8,12 @@ import qualified XMonad.StackSet as W
 
 -- Hooks
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 
 -- Util
 import XMonad.Util.EZConfig (additionalKeysP)
-import XMonad.Util.Run (spawnPipe)
+import XMonad.Util.Run (ProcessConfig(emacs), spawnPipe)
 import XMonad.Util.Ungrab ()
 
 import XMonad.Layout.NoBorders (smartBorders)
@@ -75,6 +76,8 @@ main = do
   xmproc2 <- spawnPipe "xmobar -x 2 ~/.xmobarrc -d"
   xmonad $
     docks $
+    ewmhFullscreen $
+    ewmh $
     def
       { terminal = "alacritty"
       , borderWidth = 2
