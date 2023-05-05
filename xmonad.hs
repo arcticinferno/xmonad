@@ -46,7 +46,7 @@ xYT :: Keybind
 xYT = "M-S-h" <:> "~/.local/bin/youtube-scrape"
 
 xTerminal :: Keybind
-xTerminal = "M-S-<Return>" <:> "alacritty"
+xTerminal = "M-S-<Return>" <:> "alacritty -e tmux new-session"
 
 xLauncher :: Keybind
 xLauncher = "M-p" <:> "rofi -show drun"
@@ -79,8 +79,7 @@ main = do
     ewmhFullscreen $
     ewmh $
     def
-      { terminal = "alacritty"
-      , borderWidth = 2
+      { borderWidth = 2
       , normalBorderColor = "#cccccc"
       , workspaces =
           [ " λ-dev "
@@ -103,7 +102,7 @@ main = do
              dynamicLogWithPP
                xmobarPP
                  { ppOutput = ppOutput'
-                 , ppTitle = xmobarColor "green" "" . shorten 50
+                 , ppTitle = const "" -- This line has been changed to hide the active program title
                  , ppCurrent = xmobarColor "#ff6b6b" "" . id
                  , ppVisible = xmobarColor "#ff9ff3" "" . id
                  , ppHidden = xmobarColor "#80c8ff" "" . id
